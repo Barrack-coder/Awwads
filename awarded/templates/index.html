@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% comment %} 
 
 {% block styles%}
 
 
 
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
-{%endblock %}
+{%endblock %} {% endcomment %}
    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -54,4 +54,33 @@
           </div>
       </div>
     </div>
+
+<div class="container headers">
+    <h4 style="float:left;"><span class="bold" >Sites of the Day</span>  Previous Winners</h4>
+</div>
+<div class="pages">
+<div class="row">
+  {% for winner in winners %}
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    <div class="card" style="width: 40.2rem;">
+  <img class="card-img-top img-responsive" src="{{winner.landing_page.url}}" alt="Card image cap" responsive>
+  <div class="card-body">
+  <a href="/site/{{winner.id}}" style="color:black;text-decoration:none;">
+    <h5 class="card-title" style="line-height:28px;">{{winner.title}}</h5>
+  </a>
+    <p class="card-text">From {{winner.country}}<span class="date">{{winner.post_date}}</span></p>
+  </div>
+  <div class="card-footer ">
+    <div class="user-image">
+    <img src="{{winner.avatar.url}}" class="gallery-image" alt=""  width=8 height=8>
+    <a href="/user/{{winner.username}}" style="color:black;text-decoration:none;margin:auto;">
+      <p style="font-size: 13px; font-weight: lighter;margin:auto; padding:2px;text-transform: uppercase;">{{winner.username}}</p>
+    </a>
+  </div>
+  </div>
+</div>
+  </div>
+  {% endfor %}
+</div>
+</div>
      {% endblock %} 
