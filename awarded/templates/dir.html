@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load staticfiles %}
 
-{% block styles%}
+
+{% comment %} {% block styles%} {% endcomment %}
 
   <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
@@ -11,8 +11,8 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
 
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
-{%endblock %}
+{% comment %} <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{%endblock %} {% endcomment %}
 
 {% block content %}
 
@@ -41,7 +41,7 @@
   </div>
 </div>
   </div>
-  {% endfor %}
+  {% comment %} {% endfor %} {% endcomment %}
 
 </div>
 </div>
