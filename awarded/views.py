@@ -18,6 +18,8 @@ def dir(request):
 def create_profile(request):
     return render(request,'create_profile.html',)
 
+def profile(request):
+    return render(request,'profile.html',)
 
 
 
@@ -25,3 +27,6 @@ def create_profile(request):
 
 
 
+
+# if settings.DEBUG:
+#     URLPattern += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

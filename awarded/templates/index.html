@@ -1,24 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% comment %} 
 
-{% block styles%}
-
-
-
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
-{%endblock %} {% endcomment %}
-   <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
 {% block content %}
 
     <div class="carousel-inner">
       <div class="landingpage" >
-        <img src=".images/sa_pixar_virtualbg_ratatouille_16x9_635a16bd.webp" class="landingpage-img">
+        <img src="{% static '/images/sa_pixar_virtualbg_ratatouille_16x9_635a16bd.webp' %}" class="landingpage-img">
         <div class="time">
           <p><span class="bold">Site of the day </span></p>
         </div>
@@ -219,4 +206,43 @@
 
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+    <script>
+
+var progressBarOptions = {
+	startAngle: -1.55,
+	size: 100,
+    value: {{caraousel.design}},
+    fill: {
+		color: 'Chocolate'
+	}
+}
+
+$('.circle').circleProgress(progressBarOptions).on('circle-animation-progress', function(event, progress, stepValue) {
+	$(this).find('strong').text(String((stepValue/10).toFixed(2)));
+});
+
+$('#circle-b').circleProgress({
+	value : {{caraousel.usability}},
+	fill: {
+		color: 'Khaki'
+	}
+});
+
+$('#circle-c').circleProgress({
+	value : {{caraousel.creativity}},
+	fill: {
+		color: 'DarkTurquoise'
+	}
+});
+$('#circle-d').circleProgress({
+	value : {{caraousel.content}},
+	fill: {
+		color: 'SteelBlue'
+	}
+});
+
+
+
+</script>
      {% endblock %} 

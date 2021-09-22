@@ -7,6 +7,6 @@ urlpatterns=[
       url(r'^$',views.index,name='Index'),
       url(r'^dir/',views.dir, name='dir'),
       url(r'^create/profile$',views.create_profile, name='create-profile'),
-    
+      url(r'^profile/',views.profile, name='profile'),
   
 ]
