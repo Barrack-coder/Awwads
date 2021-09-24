@@ -32,5 +32,7 @@ def new_award(request):
 
 
 
+
+
 # if settings.DEBUG:
 #     URLPattern += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
