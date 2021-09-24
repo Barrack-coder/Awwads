@@ -25,6 +25,9 @@ def profile(request):
 def new_award(request):
     return render(request,'new_award.html',)
 
+def search_results(request):
+        return render(request,'search.html',)
+
 
 
 
