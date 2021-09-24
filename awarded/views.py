@@ -22,6 +22,10 @@ def profile(request):
     return render(request,'profile.html',)
 
 
+def new_award(request):
+    return render(request,'new_award.html',)
+
+
 
 
 
