@@ -11,5 +11,8 @@ urlpatterns=[
       url(r'^new/award$',views.new_award, name='new-award'),
       url(r'^search/',views.search_results, name='search_results'),
       url(r'^sitee/(\d+)',views.sitee,name='sitee'),
+      url(r'^user/(?P<username>\w{0,50})',views.user_profile,name='user-profile'),
+      # url(r'^register/$',views.register,name='register'),
+      # url(r'^user_login/$',views.user_login,name='user_login'),
   
 ]

@@ -1,4 +1,5 @@
 from django.http import request
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.conf.urls.static import static
@@ -18,19 +19,27 @@ def dir(request):
     return render(request,'dir.html',)
 
 
+@login_required(login_url='/wards/login/')
 def create_profile(request):
     return render(request,'create_profile.html',)
 
+
+
+@login_required(login_url='/wards/login/')
 def profile(request):
     return render(request,'profile.html',)
 
 
+
+@login_required(login_url='/wards/login/')
 def new_award(request):
     return render(request,'new_award.html',)
 
 def search_results(request):
         return render(request,'search.html',)
     
+    
+@login_required(login_url='/wards/login/')    
 def sitee(request,sitee_id):
     current_user = request.user
     profile =Profile.objects.get(username=current_user)
@@ -81,6 +90,9 @@ def sitee(request,sitee_id):
 
     except:
         return None
+    
+def user_profile(request,username):
+    return render(request,'user-profile.html',)
 
 
 

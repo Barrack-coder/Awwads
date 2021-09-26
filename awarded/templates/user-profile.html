@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block styles%}
+
+<!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{%endblock %}
+
+{% block content %}
+
+<div class="text-center">
+<div class="profile-image">
+  <img src="{{profile.avatar.url}}" class="gallery-image" alt=""  width=30 height=30>
+</div>
+<p style="font-size: 22px; font-weight:bold;margin:auto; padding:2px;">{{profile.username}}</p>
+<p class="card-text" style="font-size:16px;font-weight:bold;">{{profile.description |safe}}</p>
+<p class="card-text" style="font-size:14px;color:maroon;font-weight:bold;">{{profile.email}}</p>
+
+</div>
+
+<hr>
+
+<div class="headers">
+    <h4 style="float:left;"><span class="bold" >Projects</span>  Your projects</h4>
+</div>
+<div class="container">
+<div class="row">
+
+  {% for project in projects %}
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    <div class="card" style="width: 40.2rem;">
+  <img class="card-img-top img-responsive" src="{{project.landing_page.url}}" alt="Card image cap" responsive>
+  <div class="card-body">
+    <a href="/site/{{project.id}}" style="color:black;text-decoration:none;">
+      <h5 class="card-title" style="line-height:28px;">{{project.title}}</h5>
+    </a>
+    <p class="card-text">From {{project.country}}<span class="date">{{project.post_date}}</span></p>
+  </div>
+</div>
+  </div>
+  {% endfor %}
+
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    <div class="card" style="width: 40.2rem;">
+  <img class="card-img-top img-responsive" src="" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title" style="line-height:28px;">Cocaine Route - Heart of Drugs</h5>
+    <p class="card-text">From Mexico <span class="date">February 10,2021</span></p>
+  </div>
+
+</div>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    <div class="card" style="width: 40.2rem;">
+  <img class="card-img-top img-responsive" src="" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title" style="line-height:28px;">Lessons in Life</h5>
+    <p class="card-text">From Kenya <span class="date">June 6,2021</span></p>
+  </div>
+
+
+</div>
+  </div>
+
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div class="card" style="width: 40.2rem;">
+  <img class="card-img-top img-responsive" src="" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title" style="line-height:28px;">Whispers</h5>
+    <p class="card-text">From Paris <span class="date">July 26,2021</span></p>
+  </div>
+
+</div>
+  </div>
+
+
+</div>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+{% endblock %}
