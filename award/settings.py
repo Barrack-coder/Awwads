@@ -132,6 +132,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# auth model
+AUTH_USER_MODEL="awarded.users"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -156,9 +158,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
 
 cloudinary.config( 
-  cloud_name = "YOUR_CLOUD_NAME", 
-  api_key = "YOUR_API_KEY", 
-  api_secret = "YOUR_API_SECRET" 
+  cloud_name = "dqsm8vyfs", 
+  api_key = "511394613546698", 
+  api_secret = "AcbbXTGSamQLQ9cuZvCy5GXJ8Uo" 
+  
+
 )
 
 # Default primary key field type

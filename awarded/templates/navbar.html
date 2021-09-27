@@ -31,9 +31,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Admin</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="/logout">Logout</a>
                     </li>
+                    {% else %}
+                     <li class="nav-item">
+                        <a class="nav-link" href="/user_login">Login</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <span class="navbar-nav position-absolute top-0 start-50 translate-middle" id="navbarCenteredExample">
                     <span class="nav-item mt-3"style="max-width:100%; font-size:2vw; padding-top:4rem">
@@ -48,7 +57,7 @@
                 </form>
             </div>
             <li class="nav-item ms-2 text-center" style=" background-color: #49c5b6; max-width:100%; margin-right:-1.5rem;">
-                <a class="nav-link" href="#"><span class="text-white" style="font-family: 'Architects Daughter', cursive; font-size:18px ">SUBMIT YOUR SITE!</span></a>
+                <a class="nav-link" href="/new_award"><span class="text-white" style="font-family: 'Architects Daughter', cursive; font-size:18px ">SUBMIT YOUR SITE!</span></a>
             </li>
         </div>
     </nav>

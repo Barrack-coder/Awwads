@@ -5,44 +5,63 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls.resolvers import URLPattern
 from django.core.exceptions import ObjectDoesNotExist
-from .models import categories,Award,Profile,Rating
+from .models import Users, categories,Award,Profile,Rating
+from django.contrib.auth.hashers import make_password
+
+from django.contrib import messages
+from django.contrib.auth import authenticate,login as signin,logout as signout
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
 
 
 def index(request):
-	return render(request,'index.html',)
+    award=Award.objects.all()
+    return render(request,'index.html',{'awards':award})
 
 
 def dir(request):
     return render(request,'dir.html',)
 
 
-@login_required(login_url='/wards/login/')
+
 def create_profile(request):
     return render(request,'create_profile.html',)
 
 
 
-@login_required(login_url='/wards/login/')
+
 def profile(request):
     return render(request,'profile.html',)
 
 
 
-@login_required(login_url='/wards/login/')
+@login_required(login_url='/user_login')
 def new_award(request):
-    return render(request,'new_award.html',)
+    if request.method=="POST":
+        title=request.POST.get('title')
+        description=request.POST.get('description')
+        image=request.FILES.get('image')  
+        award = Award(title=title, description=description,image=image,user=request.user)
+        award.save()
+        messages.add_message(request, messages.SUCCESS, 'Uploaded successfully!')       
+        return redirect(new_award)
+    else:
+        
+        return render(request,'new_award.html',)
 
 def search_results(request):
         return render(request,'search.html',)
     
     
-@login_required(login_url='/wards/login/')    
-def sitee(request,sitee_id):
+   
+def sitee(request):
     current_user = request.user
-    profile =Profile.objects.get(username=current_user)
+    profile =Profile.objects.get(user=current_user)
+    sitee_id =1
+
 
     try:
         award = Award.objects.get(id=sitee_id)
@@ -87,12 +106,63 @@ def sitee(request,sitee_id):
         award.overall_score = overall_score
 
         award.save()
+        return redirect("index")
 
     except:
         return None
     
 def user_profile(request,username):
     return render(request,'user-profile.html',)
+
+
+
+def register(request):
+    if request.method=="POST":
+        phone=request.POST.get('phone')
+        email=request.POST.get('email')
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        confirm_password=request.POST.get('confirm_password')
+        e_username=Users.objects.filter(username=username).count()
+        email_exist=Users.objects.filter(email=email).count()
+        if e_username>0:
+            messages.add_message(request, messages.ERROR, 'Username exist')
+            return redirect(register)
+        elif email_exist>0:
+            messages.add_message(request, messages.ERROR, 'Email exist')
+            return redirect(register)
+        else:
+            if password!=confirm_password:
+                messages.add_message(request, messages.ERROR, 'Username exist')
+                return redirect(register)
+            else:
+                user = Users(username=username, email=email,phone_number=phone,password=make_password(password))
+                user.save()
+                messages.add_message(request, messages.SUCCESS, 'Saved successfully!')
+                return redirect(user_login)
+    else:
+        return render(request, "wards/register.html")
+    
+    
+
+def user_login(request):
+     if request.method=="POST":
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+        user= authenticate(email=email, password=password)
+        if user is not None:
+            signin(request,user )
+            return redirect(index)
+        else:
+            messages.add_message(request, messages.ERROR, 'Invalid Credentials!')
+            return redirect(user_login)
+     else:
+        return render(request, "wards/login.html")
+
+def logout(request):
+    signout(request)
+    messages.add_message(request, messages.SUCCESS, 'Logout successfully!')
+    return redirect(user_login)
 
 
 

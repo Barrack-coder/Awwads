@@ -43,49 +43,26 @@
     <h4 style="float:left;"><span class="bold">Sites of the Day</span> Previous Winners</h4>
 </div> -->
 <div class="container">
-    <div class="row">
-
+    <div class="row mt-5">
+        {% for award in awards %}
         <div class="col-md-3">
             <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="img-fluid" />
+                    <img src="{{ award.image.url }}" class="img-fluid" />
                     <a href="#!">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">{{ award.title }}</h5>
                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                        {{ award.description }}
                     </p>
                     <a href="#!" class="btn btn-primary">Button</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
-        </div>
-
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                        <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="img-fluid" />
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
-                        </p>
-                        <a href="#!" class="btn btn-primary">Button</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 
