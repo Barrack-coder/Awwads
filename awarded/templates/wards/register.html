@@ -21,7 +21,7 @@
         <!-- Sing in  Form -->
         <section class="sign-in">
             <div class="container">
-                <div class="row signin-content">
+                <div class="row signin-content my-5">
                     <div class="signin-image col-md-6">
                         <figure><img src="{% static 'images/Screenshot_from_2021-09-23_19-35-21-removebg-preview.png' %}" alt="sing up image"></figure>
 
@@ -38,7 +38,7 @@
                   {% endif %}
                 {% endfor %}
               </div>
-                        <form method="POST" action="">
+                        <form class="my-1" method="POST" action="">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="your_name">Username</label>

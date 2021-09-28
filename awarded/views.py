@@ -34,7 +34,12 @@ def create_profile(request):
 
 
 def profile(request):
-    return render(request,'profile.html',)
+    current_user = request.user
+    profile =Profile.objects.get(username=current_user)
+    awards=Award.objects.filter(username=current_user)
+
+    return render(request,'profile.html',{"projects":awards,"profile":profile})
+   
 
 
 
