@@ -6,6 +6,7 @@ from tinymce.models import HTMLField
 
 from django.db.models.deletion import CASCADE
 
+from django.contrib.auth.models import PermissionsMixin
 
 
 
@@ -42,7 +43,8 @@ class MyAccountManager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
-class Users(AbstractBaseUser):
+    
+class Users(AbstractBaseUser, PermissionsMixin):
     username = models.CharField( max_length=80, unique=True)
     email = models.CharField( max_length=100, unique=True)
     phone_number = models.CharField(max_length = 15,blank =True)
@@ -79,6 +81,7 @@ class Award(models.Model):
     image = CloudinaryField('image',default='x.png')
     description = models.CharField(max_length=150,null=True)
     user = models.ForeignKey('Users', on_delete=models.CASCADE,null=True,default=1)
+    created_date = models.DateTimeField( auto_now_add=True)
  
     def __str__(self):
         return self.title
@@ -105,4 +108,6 @@ class Rating(models.Model):
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     
    
+    
+
     

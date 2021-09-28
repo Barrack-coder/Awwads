@@ -1,0 +1,9 @@
+.project-image {
+    height: 20em;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: auto;
+    height: 100%;
+}

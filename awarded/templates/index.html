@@ -55,10 +55,15 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ award.title }}</h5>
+
+                    {% if user.id == award.user.id %}
+                   <a href="/delete/{{ award.id }}" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                   {% endif %}
+                  
                     <p class="card-text">
                         {{ award.description }}
                     </p>
-                     published:{{ post.Created_date }}
+                     published:{{ award.created_date|date:"M d, Y" }}
                 </div>
             </div>
         </div>

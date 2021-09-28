@@ -16,7 +16,6 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
 def index(request):
     award=Award.objects.all()
     return render(request,'index.html',{'awards':award})
@@ -35,10 +34,9 @@ def create_profile(request):
 
 def profile(request):
     current_user = request.user
-    profile =Profile.objects.get(username=current_user)
-    awards=Award.objects.filter(username=current_user)
+    awards=Award.objects.filter(user=current_user)
 
-    return render(request,'profile.html',{"projects":awards,"profile":profile})
+    return render(request,'profile.html',{"projects":awards,})
    
 
 
@@ -52,7 +50,7 @@ def new_award(request):
         award = Award(title=title, description=description,image=image,user=request.user)
         award.save()
         messages.add_message(request, messages.SUCCESS, 'Uploaded successfully!')       
-        return redirect(new_award)
+        return redirect(index)
     else:
         
         return render(request,'new_award.html',)
@@ -168,6 +166,12 @@ def logout(request):
     signout(request)
     messages.add_message(request, messages.SUCCESS, 'Logout successfully!')
     return redirect(user_login)
+
+def delete_project(request,id):
+    award = Award.objects.filter(id=id)
+    award.delete()
+    
+    return redirect(index)
 
 
 
