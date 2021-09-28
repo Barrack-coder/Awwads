@@ -1,7 +1,8 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
-from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser,BaseUserManager, User
 import datetime as dt
+from tinymce.models import HTMLField
 
 from django.db.models.deletion import CASCADE
 
@@ -85,10 +86,16 @@ class Award(models.Model):
     
 class Profile(models.Model):
     avatar = models.ImageField(upload_to='avatars/')
+    description = HTMLField()
+    country = models.ForeignKey(countries,on_delete=models.CASCADE)
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    name =models.CharField(max_length=100)
+    email = models.EmailField()
    
 
     def __str__(self):
         return self
+    
 class Rating(models.Model):
     design = models.IntegerField(blank=True,default=0)
     usability = models.IntegerField(blank=True,default=0)

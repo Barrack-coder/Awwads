@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'awarded',
     'cloudinary',
     'rest_framework',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
