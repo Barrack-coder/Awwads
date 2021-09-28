@@ -85,12 +85,11 @@ class Award(models.Model):
     
     
 class Profile(models.Model):
-    avatar = models.ImageField(upload_to='avatars/')
-    description = HTMLField()
-    country = models.ForeignKey(countries,on_delete=models.CASCADE)
-    username = models.ForeignKey(User,on_delete=models.CASCADE)
-    name =models.CharField(max_length=100)
-    email = models.EmailField()
+    image = CloudinaryField('image',default='x.png')
+    description = models.CharField(max_length=150,null=True)
+    user = models.ForeignKey('Users', on_delete=models.CASCADE,null=True,default=1)
+    name =models.CharField(max_length=100, null=True)
+    email = models.EmailField(null=True, default=1)
    
 
     def __str__(self):
